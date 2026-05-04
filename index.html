@@ -14,7 +14,6 @@
         .hero-gradient { background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent), radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent); }
         .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15); }
-        .img-zoom { overflow: hidden; border-radius: 1.5rem; }
     </style>
 </head>
 <body class="text-slate-900">
@@ -33,15 +32,13 @@
             </div>
             
             <div class="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#details" class="hover:text-indigo-600 transition" data-i18n="nav-benefits">Vorteile</a>
                 <a href="#gallery" class="hover:text-indigo-600 transition" data-i18n="nav-gallery">Galerie</a>
                 <a href="#order" class="hover:text-indigo-600 transition" data-i18n="nav-order">Bestellen</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <!-- Selector de Idioma -->
                 <div class="relative group">
-                    <button id="langBtn" class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition">
+                    <button class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition">
                         <i class="fa-solid fa-globe"></i> <span id="currentLang">DE</span>
                     </button>
                     <div class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 group-hover:opacity-100 transition-all invisible group-hover:visible z-50">
@@ -50,7 +47,6 @@
                         <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-b-xl">ENGLISH</button>
                     </div>
                 </div>
-                <!-- Correo Actualizado -->
                 <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-indigo-700 transition-all" data-i18n="btn-request">Jetzt Anfragen</a>
             </div>
         </div>
@@ -78,78 +74,101 @@
                 </div>
             </div>
             <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-2xl border border-slate-50">
-                <div class="img-zoom aspect-square">
-                    <img src="IMG_20260504_110921.jpg" alt="Betterhöhung" class="w-full h-full object-cover rounded-[1.5rem]">
+                <div class="aspect-square overflow-hidden rounded-[1.5rem]">
+                    <!-- Verifica que el nombre del archivo sea exacto -->
+                    <img src="./IMG_20260504_110921.jpg" alt="Betterhöhung Hero" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Galería de Fotos -->
+    <section id="gallery" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-extrabold tracking-tighter mb-4" data-i18n="nav-gallery">Galerie</h2>
+            <div class="h-1.5 w-20 bg-indigo-600 mx-auto rounded-full"></div>
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Imagen 1 -->
+            <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-slate-100 aspect-square">
+                <img src="./IMG_20260504_110921.jpg" alt="Producto 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            </div>
+            <!-- Imagen 2 (Si tienes más, añade el nombre aquí) -->
+            <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-slate-100 aspect-square">
+                <img src="./IMG_20260504_111000.jpg" alt="Producto 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            </div>
+             <!-- Imagen 3 -->
+             <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-slate-100 aspect-square">
+                <img src="./IMG_20260504_111100.jpg" alt="Producto 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            </div>
+        </div>
+    </section>
 
     <!-- Shipping & Payment Section -->
     <section id="order" class="py-24 px-6 bg-slate-900 text-white text-center">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-4xl font-extrabold mb-8 tracking-tighter" data-i18n="cta-title">Sichern Sie sich Ihr Set</h2>
             <p class="text-slate-300 text-lg mb-12 max-w-2xl mx-auto" data-i18n="cta-desc">
-                Der Versand erfolgt <b>deutschlandweit exklusiv über DHL oder Hermes</b>. Eine Abholung vor Ort ist leider nicht möglich.
+                Der Versand erfolgt <b>deutschlandweit exklusiv über DHL oder Hermes</b>. Una Abholung vor Ort es leider nicht möglich.
             </p>
             
             <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
-                <!-- Botón de Correo Principal -->
                 <a href="mailto:rafael.weinzierl@gmail.com" class="w-full md:w-auto bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-colors shadow-xl">
                     <i class="fa-solid fa-envelope mr-3 text-indigo-600"></i> <span data-i18n="btn-order">Anfrage per E-Mail</span>
                 </a>
 
-                <!-- Botón de PayPal (Ahora es un Link) -->
-                <a href="mailto:rafael.weinzierl@gmail.com?subject=PayPal%20Payment%20Link%20Request" class="w-full md:w-auto flex items-center gap-4 px-8 py-5 bg-white/5 backdrop-blur rounded-2xl border border-white/10 hover:bg-white/10 transition-all group">
-                    <i class="fa-brands fa-paypal text-2xl text-indigo-400 group-hover:scale-110 transition"></i>
+                <div class="w-full md:w-auto flex items-center gap-4 px-8 py-5 bg-white/5 backdrop-blur rounded-2xl border border-white/10">
+                    <i class="fa-brands fa-paypal text-2xl text-indigo-400"></i>
                     <div class="text-left">
                         <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Method</span>
                         <span class="text-sm font-bold text-white uppercase tracking-wider">PayPal Aceptado</span>
                     </div>
-                </a>
+                </div>
             </div>
 
             <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                Kleingewerbe nach § 19 UStG | Essen, Deutschland
+                Kleingewerbe nach § 19 UStG | Essen, Deutschland | rafael.weinzierl@gmail.com
             </div>
         </div>
     </section>
 
-    <!-- Script de Traducción -->
     <script>
         const translations = {
             'de': {
                 'location': 'Essen, Deutschland',
-                'nav-benefits': 'Vorteile', 'nav-gallery': 'Galerie', 'nav-order': 'Bestellen',
+                'nav-gallery': 'Galerie',
+                'nav-order': 'Bestellen',
                 'btn-request': 'Jetzt Anfragen',
                 'hero-title': 'Mehr Freiheit für Ihren <br><span class="text-indigo-600">Saugroboter.</span>',
                 'hero-desc': 'Unsere hochfesten Erhöhungen wurden speziell entwickelt, damit Ihr Saugroboter mühelos jeden Winkel unter dem Bett erreicht. Präzise gefertigt in Essen für maximale Stabilität.',
                 'price-tag': '4er Set (Zzgl. Versand)', 'feat-1': 'Industrieller Qualitäts-Kunststoff', 'feat-2': 'Für Beine bis 6cm Radius',
                 'cta-title': 'Sichern Sie sich Ihr Set',
-                'cta-desc': 'Der Versand erfolgt <b>deutschlandweit exklusiv über DHL oder Hermes</b>. Eine Abholung vor Ort ist leider nicht möglich. Kontaktieren Sie mich gerne für individuelle Wünsche.',
+                'cta-desc': 'Der Versand erfolgt <b>deutschlandweit exklusiv über DHL oder Hermes</b>. Eine Abholung vor Ort es leider nicht möglich. Kontaktieren Sie mich gerne für individuelle Wünsche.',
                 'btn-order': 'Anfrage per E-Mail'
             },
             'es': {
                 'location': 'Essen, Alemania',
-                'nav-benefits': 'Ventajas', 'nav-gallery': 'Galería', 'nav-order': 'Pedido',
+                'nav-gallery': 'Galería',
+                'nav-order': 'Pedido',
                 'btn-request': 'Contactar ahora',
                 'hero-title': 'Más libertad para su <br><span class="text-indigo-600">Robot Aspirador.</span>',
                 'hero-desc': 'Nuestras elevaciones de alta resistencia están diseñadas para que su robot aspirador llegue a cada rincón bajo la cama sin esfuerzo. Fabricadas en Essen con la máxima precisión.',
                 'price-tag': 'Set de 4 (Más envío)', 'feat-1': 'Plástico de calidad industrial', 'feat-2': 'Para patas de hasta 6cm de radio',
                 'cta-title': 'Consiga su Set ahora',
-                'cta-desc': 'Envío seguro exclusivamente por <b>DHL o Hermes</b> en toda Alemania. Por motivos logísticos, no es posible recogerlo en el lugar. Contáctame para pedidos personalizados.',
-                'btn-order': 'Anfrage per E-Mail'
+                'cta-desc': 'Envío seguro exclusivamente por <b>DHL o Hermes</b> en toda Alemania para garantizar la máxima fiabilidad. Por motivos logísticos, no es posible recoger el producto en el lugar. Contáctame para pedidos o diseños personalizados.',
+                'btn-order': 'Enviar solicitud por E-mail'
             },
             'en': {
                 'location': 'Essen, Germany',
-                'nav-benefits': 'Benefits', 'nav-gallery': 'Gallery', 'nav-order': 'Order',
+                'nav-gallery': 'Gallery',
+                'nav-order': 'Order',
                 'btn-request': 'Inquire Now',
                 'hero-title': 'More freedom for your <br><span class="text-indigo-600">Robot Vacuum.</span>',
                 'hero-desc': 'Our high-strength risers are specially designed to allow your robot vacuum to reach every corner under the bed effortlessly. Precision-made in Essen for maximum stability.',
                 'price-tag': 'Set of 4 (Plus shipping)', 'feat-1': 'Industrial grade material', 'feat-2': 'For legs up to 6cm radius',
                 'cta-title': 'Get your set today',
-                'cta-desc': 'Reliable shipping <b>across Germany exclusively via DHL or Hermes</b>. Please note that local pickup is not available. Contact me for custom requests.',
-                'btn-order': 'Anfrage per E-Mail'
+                'cta-desc': 'Reliable shipping <b>across Germany exclusively via DHL or Hermes</b>. Please note that local pickup is not available. Feel free to contact me for custom or individual requests.',
+                'btn-order': 'Send Inquiry via Email'
             }
         };
 
