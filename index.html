@@ -15,9 +15,6 @@
         .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15); }
         .img-zoom { overflow: hidden; border-radius: 1.5rem; }
-        .img-zoom img { transition: transform 0.7s ease; }
-        .img-zoom:hover img { transform: scale(1.1); }
-        .badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 9999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="text-slate-900">
@@ -42,7 +39,7 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <!-- Selector de Idioma Funcional -->
+                <!-- Selector de Idioma -->
                 <div class="relative group">
                     <button id="langBtn" class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition">
                         <i class="fa-solid fa-globe"></i> <span id="currentLang">DE</span>
@@ -53,10 +50,8 @@
                         <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-b-xl">ENGLISH</button>
                     </div>
                 </div>
-
-                <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 transition-all" data-i18n="btn-request">
-                    Jetzt Anfragen
-                </a>
+                <!-- Correo Actualizado -->
+                <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-indigo-700 transition-all" data-i18n="btn-request">Jetzt Anfragen</a>
             </div>
         </div>
     </nav>
@@ -65,102 +60,96 @@
     <header class="relative pt-32 pb-20 px-6 hero-gradient overflow-hidden">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
             <div class="z-10">
-                <div class="badge bg-indigo-50 text-indigo-700 border border-indigo-100 mb-6">
-                    <i class="fa-solid fa-location-dot mr-2"></i> <span data-i18n="hero-badge">Lokal in Essen (45143)</span>
-                </div>
                 <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter text-slate-900" data-i18n="hero-title">
-                    Mehr Platz für Ihren <br><span class="text-indigo-600">Saugroboter.</span>
+                    Mehr Freiheit für Ihren <br><span class="text-indigo-600">Saugroboter.</span>
                 </h1>
                 <p class="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed" data-i18n="hero-desc">
-                    Unsere hochfesten Erhöhungen ermöglichen es Ihrem Roboter, mühelos unter dem Bett zu reinigen. Konstruiert und gefertigt in Essen für Holz- und Metallbeine.
+                    Unsere hochfesten Erhöhungen wurden speziell entwickelt, damit Ihr Saugroboter mühelos jeden Winkel unter dem Bett erreicht. Präzise gefertigt in Essen für maximale Stabilität.
                 </p>
                 <div class="flex flex-wrap gap-8 items-center p-6 bg-white rounded-3xl shadow-sm border border-slate-100">
                     <div class="flex flex-col">
                         <span class="text-4xl font-black text-slate-900">40,00 €</span>
                         <span class="text-[10px] font-bold text-slate-400 uppercase" data-i18n="price-tag">4er Set (Zzgl. Versand)</span>
                     </div>
-                    <div class="h-10 w-[1px] bg-slate-200 hidden sm:block"></div>
                     <ul class="text-xs space-y-1 font-bold text-slate-500 uppercase tracking-tight">
-                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-1">Industrielles PETG-Material</span></li>
-                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-2">Bis 6cm Bein-Radius</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-1">Industrieller Qualitäts-Kunststoff</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-2">Für Beine bis 6cm Radius</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="relative">
-                <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-2xl relative border border-slate-50">
-                    <div class="img-zoom aspect-square">
-                        <img src="IMG_20260504_110921.jpg" alt="Betterhöhung" class="w-full h-full object-cover">
-                    </div>
+            <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-2xl border border-slate-50">
+                <div class="img-zoom aspect-square">
+                    <img src="IMG_20260504_110921.jpg" alt="Betterhöhung" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Shipping Section (DHL/HERMES ONLY) -->
+    <!-- Shipping & Payment Section -->
     <section id="order" class="py-24 px-6 bg-slate-900 text-white text-center">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-extrabold mb-8 tracking-tighter" data-i18n="cta-title">Bereit für ein saubereres Zuhause?</h2>
-            <p class="text-slate-400 text-lg mb-12 max-w-2xl mx-auto" data-i18n="cta-desc">
-                Sicherer Versand ausschließlich per <b>DHL oder Hermes</b> deutschlandweit. Keine Abholung vor Ort möglich.
+            <h2 class="text-4xl font-extrabold mb-8 tracking-tighter" data-i18n="cta-title">Sichern Sie sich Ihr Set</h2>
+            <p class="text-slate-300 text-lg mb-12 max-w-2xl mx-auto" data-i18n="cta-desc">
+                Der Versand erfolgt <b>deutschlandweit exklusiv über DHL oder Hermes</b>. Eine Abholung vor Ort ist leider nicht möglich.
             </p>
-            <a href="mailto:rafael.weinzierl@gmail.com" class="inline-block bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-colors" data-i18n="btn-order">
-                Bestellanfrage senden
-            </a>
-            <div class="mt-20 grid md:grid-cols-3 gap-8 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                <div class="flex flex-col gap-2">
-                    <span class="text-slate-300" data-i18n="footer-loc-t">Standort</span>
-                    <span>Altendorfer Str. 355<br>45143 Essen</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <span class="text-slate-300" data-i18n="footer-ship-t">Versandart</span>
-                    <span data-i18n="footer-ship-v">Exklusiv DHL / Hermes<br>Keine Abholung</span>
-                </div>
-                <div class="flex flex-col gap-2 text-center md:text-right">
-                    <span class="text-slate-300" data-i18n="footer-legal-t">Rechtliches</span>
-                    <span data-i18n="footer-legal-v">Kleingewerbe nach § 19 UStG</span>
-                </div>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
+                <!-- Botón de Correo Principal -->
+                <a href="mailto:rafael.weinzierl@gmail.com" class="w-full md:w-auto bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-colors shadow-xl">
+                    <i class="fa-solid fa-envelope mr-3 text-indigo-600"></i> <span data-i18n="btn-order">Anfrage per E-Mail</span>
+                </a>
+
+                <!-- Botón de PayPal (Ahora es un Link) -->
+                <a href="mailto:rafael.weinzierl@gmail.com?subject=PayPal%20Payment%20Link%20Request" class="w-full md:w-auto flex items-center gap-4 px-8 py-5 bg-white/5 backdrop-blur rounded-2xl border border-white/10 hover:bg-white/10 transition-all group">
+                    <i class="fa-brands fa-paypal text-2xl text-indigo-400 group-hover:scale-110 transition"></i>
+                    <div class="text-left">
+                        <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Method</span>
+                        <span class="text-sm font-bold text-white uppercase tracking-wider">PayPal Aceptado</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                Kleingewerbe nach § 19 UStG | Essen, Deutschland
             </div>
         </div>
     </section>
 
-    <!-- Lógica de Traducción -->
+    <!-- Script de Traducción -->
     <script>
         const translations = {
             'de': {
                 'location': 'Essen, Deutschland',
                 'nav-benefits': 'Vorteile', 'nav-gallery': 'Galerie', 'nav-order': 'Bestellen',
-                'btn-request': 'Jetzt Anfragen', 'hero-badge': 'Lokal in Essen (45143)',
-                'hero-title': 'Mehr Platz für Ihren <br><span class="text-indigo-600">Saugroboter.</span>',
-                'hero-desc': 'Unsere hochfesten Erhöhungen ermöglichen es Ihrem Roboter, mühelos unter dem Bett zu reinigen. Konstruiert und gefertigt in Essen für Holz- und Metallbeine.',
-                'price-tag': '4er Set (Zzgl. Versand)', 'feat-1': 'Industrielles PETG-Material', 'feat-2': 'Bis 6cm Bein-Radius',
-                'cta-title': 'Bereit für ein saubereres Zuhause?',
-                'cta-desc': 'Sicherer Versand ausschließlich per <b>DHL oder Hermes</b> deutschlandweit. Keine Abholung vor Ort möglich.',
-                'btn-order': 'Bestellanfrage senden', 'footer-loc-t': 'Standort', 'footer-ship-t': 'Versandart',
-                'footer-ship-v': 'Exklusiv DHL / Hermes<br>Keine Abholung', 'footer-legal-t': 'Rechtliches', 'footer-legal-v': 'Kleingewerbe nach § 19 UStG'
+                'btn-request': 'Jetzt Anfragen',
+                'hero-title': 'Mehr Freiheit für Ihren <br><span class="text-indigo-600">Saugroboter.</span>',
+                'hero-desc': 'Unsere hochfesten Erhöhungen wurden speziell entwickelt, damit Ihr Saugroboter mühelos jeden Winkel unter dem Bett erreicht. Präzise gefertigt in Essen für maximale Stabilität.',
+                'price-tag': '4er Set (Zzgl. Versand)', 'feat-1': 'Industrieller Qualitäts-Kunststoff', 'feat-2': 'Für Beine bis 6cm Radius',
+                'cta-title': 'Sichern Sie sich Ihr Set',
+                'cta-desc': 'Der Versand erfolgt <b>deutschlandweit exklusiv über DHL oder Hermes</b>. Eine Abholung vor Ort ist leider nicht möglich. Kontaktieren Sie mich gerne für individuelle Wünsche.',
+                'btn-order': 'Anfrage per E-Mail'
             },
             'es': {
                 'location': 'Essen, Alemania',
                 'nav-benefits': 'Ventajas', 'nav-gallery': 'Galería', 'nav-order': 'Pedido',
-                'btn-request': 'Contactar ahora', 'hero-badge': 'Local en Essen (45143)',
-                'hero-title': 'Más espacio para su <br><span class="text-indigo-600">Robot Aspirador.</span>',
-                'hero-desc': 'Nuestras elevaciones de alta resistencia permiten que su robot limpie debajo de la cama sin esfuerzo. Diseñado y fabricado en Essen.',
-                'price-tag': 'Set de 4 (Más envío)', 'feat-1': 'Material PETG Industrial', 'feat-2': 'Hasta 6cm de radio',
-                'cta-title': '¿Listo para un hogar más limpio?',
-                'cta-desc': 'Envío seguro exclusivamente por <b>DHL o Hermes</b> a toda Alemania. No se permite recogida local.',
-                'btn-order': 'Enviar solicitud de pedido', 'footer-loc-t': 'Ubicación', 'footer-ship-t': 'Método de Envío',
-                'footer-ship-v': 'Exclusivo DHL / Hermes<br>Sin recogida local', 'footer-legal-t': 'Legal', 'footer-legal-v': 'Pequeña empresa (§ 19 UStG)'
+                'btn-request': 'Contactar ahora',
+                'hero-title': 'Más libertad para su <br><span class="text-indigo-600">Robot Aspirador.</span>',
+                'hero-desc': 'Nuestras elevaciones de alta resistencia están diseñadas para que su robot aspirador llegue a cada rincón bajo la cama sin esfuerzo. Fabricadas en Essen con la máxima precisión.',
+                'price-tag': 'Set de 4 (Más envío)', 'feat-1': 'Plástico de calidad industrial', 'feat-2': 'Para patas de hasta 6cm de radio',
+                'cta-title': 'Consiga su Set ahora',
+                'cta-desc': 'Envío seguro exclusivamente por <b>DHL o Hermes</b> en toda Alemania. Por motivos logísticos, no es posible recogerlo en el lugar. Contáctame para pedidos personalizados.',
+                'btn-order': 'Anfrage per E-Mail'
             },
             'en': {
                 'location': 'Essen, Germany',
                 'nav-benefits': 'Benefits', 'nav-gallery': 'Gallery', 'nav-order': 'Order',
-                'btn-request': 'Inquire Now', 'hero-badge': 'Local in Essen (45143)',
-                'hero-title': 'More space for your <br><span class="text-indigo-600">Robot Vacuum.</span>',
-                'hero-desc': 'Our high-strength risers allow your robot to clean under the bed effortlessly. Designed and manufactured in Essen.',
-                'price-tag': 'Set of 4 (Plus shipping)', 'feat-1': 'Industrial PETG Material', 'feat-2': 'Up to 6cm leg radius',
-                'cta-title': 'Ready for a cleaner home?',
-                'cta-desc': 'Secure shipping exclusively via <b>DHL or Hermes</b> nationwide. No local pickup available.',
-                'btn-order': 'Send Order Inquiry', 'footer-loc-t': 'Location', 'footer-ship-t': 'Shipping Method',
-                'footer-ship-v': 'Exclusive DHL / Hermes<br>No pickup available', 'footer-legal-t': 'Legal', 'footer-legal-v': 'Small business (§ 19 UStG)'
+                'btn-request': 'Inquire Now',
+                'hero-title': 'More freedom for your <br><span class="text-indigo-600">Robot Vacuum.</span>',
+                'hero-desc': 'Our high-strength risers are specially designed to allow your robot vacuum to reach every corner under the bed effortlessly. Precision-made in Essen for maximum stability.',
+                'price-tag': 'Set of 4 (Plus shipping)', 'feat-1': 'Industrial grade material', 'feat-2': 'For legs up to 6cm radius',
+                'cta-title': 'Get your set today',
+                'cta-desc': 'Reliable shipping <b>across Germany exclusively via DHL or Hermes</b>. Please note that local pickup is not available. Contact me for custom requests.',
+                'btn-order': 'Anfrage per E-Mail'
             }
         };
 
