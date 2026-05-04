@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BedLift 3D | Elevación Inteligente en Essen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .bg-clouds {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), 
+                              url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-attachment: fixed;
+            filter: grayscale(100%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .product-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            background-color: #f1f5f9;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .product-img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .lang-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 140px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 100;
+            border-radius: 12px;
+            margin-top: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        .lang-dropdown:hover .lang-content {
+            display: block;
+        }
+        .lang-content a {
+            color: #1e293b;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .lang-content a:hover {
+            background-color: #f1f5f9;
+            color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 bg-clouds">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="bg-slate-900 text-white px-2 py-1 rounded font-black text-sm">3D</span>
+                <span class="text-xl font-extrabold uppercase tracking-tighter text-slate-800">BedLift <span class="text-indigo-600">Essen</span></span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-slate-500 items-center">
+                <a href="#inicio" class="hover:text-indigo-600 transition">Inicio</a>
+                <a href="#detalles" class="hover:text-indigo-600 transition">Especificaciones</a>
+                <a href="#fotos" class="hover:text-indigo-600 transition">Uso Real</a>
+                
+                <div class="lang-dropdown">
+                    <button class="flex items-center gap-2 text-slate-800 bg-white border border-slate-200 px-4 py-2 rounded-xl hover:bg-slate-50 transition shadow-sm">
+                        <i class="fa-solid fa-language text-indigo-600"></i>
+                        <span class="text-xs uppercase tracking-widest">Idioma</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] opacity-50"></i>
+                    </button>
+                    <div class="lang-content">
+                        <a href="#"><img src="https://flagcdn.com/w20/es.png" width="20" alt="ES"> Español</a>
+                        <a href="#"><img src="https://flagcdn.com/w20/de.png" width="20" alt="DE"> Deutsch</a>
+                        <a href="#"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="EN"> English</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                Pedir Ahora
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <span class="inline-block bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-full text-xs font-bold border border-indigo-100 mb-6 uppercase tracking-widest">
+                    Fabricación 3D • Essen, DE
+                </span>
+                <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-8 tracking-tighter text-slate-800">
+                    Eleva tu cama, <br><span class="text-indigo-600 text-4xl lg:text-6xl">mejora tu limpieza.</span>
+                </h1>
+                <p class="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
+                    Elevadores robustos para <b>pata de metal o madera</b> de hasta 6 cm de radio. La altura ideal de 7 cm para tu robot aspirador.
+                </p>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8">
+                    <div class="flex flex-col">
+                        <span class="text-4xl font-black text-slate-900">40,00 €</span>
+                        <span class="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em] mt-1 italic">Envío por pagar</span>
+                    </div>
+                    <a href="#contacto" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-slate-800 transition shadow-xl">
+                        Pack 4 Unidades <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <!-- Imagen principal (Metal) -->
+                <div class="product-img-container border-8 border-white aspect-square shadow-2xl">
+                    <img src="IMG_20260504_110921.jpg" alt="Elevador BedLift en pata de metal">
+                    <div class="absolute bottom-6 left-6 right-6 glass p-4 rounded-2xl border border-white/50 text-center">
+                        <p class="text-[10px] font-black uppercase text-indigo-600 tracking-widest mb-1">Logística</p>
+                        <p class="text-sm font-bold text-slate-800">Gestión de envío vía DHL o Hermes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especificaciones Técnicas -->
+    <section id="detalles" class="py-24 glass border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12 items-center">
+                <div class="lg:col-span-1">
+                    <h2 class="text-3xl font-black uppercase tracking-tighter mb-6">Datos <br>Técnicos</h2>
+                    <p class="text-slate-500 leading-relaxed mb-8">
+                        Dimensiones de base: <b>85x85 mm</b>. Altura total: <b>90 mm</b>. Elevación efectiva del mueble: <b>70 mm</b>.
+                    </p>
+                    <div class="inline-flex items-center gap-3 bg-indigo-600 px-4 py-2 rounded-2xl shadow-md">
+                        <i class="fa-solid fa-truck-fast text-white text-xs"></i>
+                        <span class="text-sm font-bold text-white uppercase tracking-tighter">Envío por pagar</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 card-hover shadow-sm flex flex-col items-center text-center">
+                            <span class="text-3xl font-black text-indigo-600 mb-1">7cm</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Altura Extra</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 card-hover shadow-sm flex flex-col items-center text-center">
+                            <span class="text-3xl font-black text-indigo-600 mb-1">6cm</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Radio Máx</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 card-hover shadow-sm flex flex-col items-center text-center">
+                            <span class="text-3xl font-black text-indigo-600 mb-1">DHL</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Transporte</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 card-hover shadow-sm flex flex-col items-center text-center">
+                            <span class="text-3xl font-black text-indigo-600 mb-1">PETG</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Material</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería Real -->
+    <section id="fotos" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4">Adaptabilidad Total</h2>
+                <p class="text-slate-500 max-w-xl mx-auto">Tú eliges el ajuste según tu cama. Diseñado tanto para patas de madera como de metal.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Foto Madera -->
+                <div class="space-y-6">
+                    <div class="product-img-container border-4 border-white shadow-xl aspect-[4/5]">
+                        <img src="IMG_20260504_110852.jpg" alt="Elevador BedLift en pata de madera">
+                        <div class="absolute top-4 left-4 bg-indigo-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase">Uso en Madera</div>
+                    </div>
+                    <div class="px-4">
+                        <h4 class="font-black text-slate-800 uppercase text-sm tracking-widest mb-2">Integración con Madera</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">Soporte firme para patas clásicas, manteniendo la estabilidad sin dañar el material.</p>
+                    </div>
+                </div>
+                <!-- Foto Metal -->
+                <div class="space-y-6">
+                    <div class="product-img-container border-4 border-white shadow-xl aspect-[4/5]">
+                        <img src="IMG_20260504_110921.jpg" alt="Elevador BedLift en pata de metal">
+                        <div class="absolute top-4 left-4 bg-slate-900 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase">Uso en Metal</div>
+                    </div>
+                    <div class="px-4">
+                        <h4 class="font-black text-slate-800 uppercase text-sm tracking-widest mb-2">Ajuste en Metal</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">Diseño industrial de alta fricción que asegura patas metálicas delgadas o gruesas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto e Instrucciones de Envío -->
+    <section id="contacto" class="py-24 px-6 bg-slate-100/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass p-12 rounded-[3rem] shadow-2xl border border-white grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-tighter mb-8">Información de Pedido</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-5">
+                            <div class="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold shrink-0">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 uppercase text-xs tracking-widest mb-1">Color y Selección</h4>
+                                <p class="text-sm text-slate-500">Negro, Blanco o Gris. Pack de 4 piezas por 40,00€.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5">
+                            <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 uppercase text-xs tracking-widest mb-1">Envío por pagar</h4>
+                                <p class="text-sm text-slate-500">El coste del transporte se abona al recibir o retirar según la tarifa de <b>DHL</b> o <b>Hermes</b>.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5">
+                            <div class="w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold shrink-0">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 uppercase text-xs tracking-widest mb-1">Pago PayPal</h4>
+                                <p class="text-sm text-slate-500">Confirmación inmediata y fabricación bajo demanda.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 rounded-[2rem] p-10 text-white flex flex-col justify-center text-center">
+                    <i class="fa-solid fa-truck-ramp-box text-indigo-400 text-4xl mb-6"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-2">Escríbeme para gestionar</p>
+                    <a href="mailto:rafael.weinzierl@gmail.com" class="text-xl font-bold text-indigo-300 hover:text-white transition break-all mb-8">
+                        rafael.weinzierl@gmail.com
+                    </a>
+                    <div class="pt-8 border-t border-white/10 text-left">
+                        <p class="text-[10px] text-slate-500 uppercase font-black mb-2">Opciones de Entrega:</p>
+                        <div class="flex justify-between text-xs font-bold">
+                            <span>📦 DHL (Nacional)</span>
+                            <span>📦 Hermes (Local)</span>
+                        </div>
+                        <p class="mt-4 text-[10px] text-slate-500 italic">Retirada en mano disponible en 45143 Essen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="bg-slate-900 text-white px-2 py-1 rounded font-bold text-xs">3D</span>
+                <span class="font-black uppercase text-sm tracking-tighter">BedLift Essen</span>
+            </div>
+            <p class="text-[10px] text-slate-400 uppercase font-bold text-center">
+                Rafael Weinzierl • Essen, Alemania <br> <span class="text-indigo-400">Envío no incluido en el precio base</span>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
