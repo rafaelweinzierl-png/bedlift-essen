@@ -8,62 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        
-        :root {
-            --primary: #4f46e5;
-            --dark: #0f172a;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #f8fafc;
-        }
-
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .hero-gradient {
-            background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent),
-                        radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent);
-        }
-
-        .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
-        }
-
-        .img-zoom {
-            overflow: hidden;
-            border-radius: 1.5rem;
-        }
-
-        .img-zoom img {
-            transition: transform 0.7s ease;
-        }
-
-        .img-zoom:hover img {
-            transform: scale(1.1);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+        :root { --primary: #4f46e5; --dark: #0f172a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .hero-gradient { background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent), radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent); }
+        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15); }
+        .img-zoom { overflow: hidden; border-radius: 1.5rem; }
+        .img-zoom img { transition: transform 0.7s ease; }
+        .img-zoom:hover img { transform: scale(1.1); }
+        .badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 9999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="text-slate-900">
@@ -76,31 +30,31 @@
                     <i class="fa-solid fa-cube text-xl"></i>
                 </div>
                 <div>
-                    <span class="block text-lg font-extrabold tracking-tighter leading-none">BEDLIFT <span class="text-indigo-600">3D</span></span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Essen, Deutschland</span>
+                    <span class="block text-lg font-extrabold tracking-tighter leading-none uppercase">BedLift <span class="text-indigo-600">3D</span></span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest" data-i18n="location">Essen, Deutschland</span>
                 </div>
             </div>
             
             <div class="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#details" class="hover:text-indigo-600 transition">Vorteile</a>
-                <a href="#gallery" class="hover:text-indigo-600 transition">Galerie</a>
-                <a href="#order" class="hover:text-indigo-600 transition">Bestellen</a>
+                <a href="#details" class="hover:text-indigo-600 transition" data-i18n="nav-benefits">Vorteile</a>
+                <a href="#gallery" class="hover:text-indigo-600 transition" data-i18n="nav-gallery">Galerie</a>
+                <a href="#order" class="hover:text-indigo-600 transition" data-i18n="nav-order">Bestellen</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <!-- Botón de Idiomas -->
+                <!-- Selector de Idioma Funcional -->
                 <div class="relative group">
-                    <button class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition">
-                        <i class="fa-solid fa-globe"></i> DE
+                    <button id="langBtn" class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition">
+                        <i class="fa-solid fa-globe"></i> <span id="currentLang">DE</span>
                     </button>
                     <div class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 group-hover:opacity-100 transition-all invisible group-hover:visible z-50">
-                        <a href="#" class="block px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-t-xl">DEUTSCH</a>
-                        <a href="#" class="block px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50">ESPAÑOL</a>
-                        <a href="#" class="block px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-b-xl">ENGLISH</a>
+                        <button onclick="changeLanguage('de')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-t-xl">DEUTSCH</button>
+                        <button onclick="changeLanguage('es')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50">ESPAÑOL</button>
+                        <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-b-xl">ENGLISH</button>
                     </div>
                 </div>
 
-                <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 transition-all">
+                <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 transition-all" data-i18n="btn-request">
                     Jetzt Anfragen
                 </a>
             </div>
@@ -112,156 +66,111 @@
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
             <div class="z-10">
                 <div class="badge bg-indigo-50 text-indigo-700 border border-indigo-100 mb-6">
-                    <i class="fa-solid fa-location-dot mr-2"></i> Lokal in Essen (45143)
+                    <i class="fa-solid fa-location-dot mr-2"></i> <span data-i18n="hero-badge">Lokal in Essen (45143)</span>
                 </div>
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter text-slate-900">
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter text-slate-900" data-i18n="hero-title">
                     Mehr Platz für Ihren <br><span class="text-indigo-600">Saugroboter.</span>
                 </h1>
-                <p class="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
-                    Unsere hochfesten Erhöhungen ermöglichen es Ihrem Roboter, mühelos unter dem Bett zu reinigen. Konstruiert und gefertigt in Essen für <b>Holz- und Metallbeine</b>.
+                <p class="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed" data-i18n="hero-desc">
+                    Unsere hochfesten Erhöhungen ermöglichen es Ihrem Roboter, mühelos unter dem Bett zu reinigen. Konstruiert und gefertigt in Essen für Holz- und Metallbeine.
                 </p>
                 <div class="flex flex-wrap gap-8 items-center p-6 bg-white rounded-3xl shadow-sm border border-slate-100">
                     <div class="flex flex-col">
                         <span class="text-4xl font-black text-slate-900">40,00 €</span>
-                        <span class="text-[10px] font-bold text-slate-400 uppercase">4er Set (Zzgl. Versand)</span>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase" data-i18n="price-tag">4er Set (Zzgl. Versand)</span>
                     </div>
                     <div class="h-10 w-[1px] bg-slate-200 hidden sm:block"></div>
                     <ul class="text-xs space-y-1 font-bold text-slate-500 uppercase tracking-tight">
-                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Industrielles PETG-Material</li>
-                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Bis 6cm Bein-Radius</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-1">Industrielles PETG-Material</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-2">Bis 6cm Bein-Radius</span></li>
                     </ul>
                 </div>
             </div>
-
             <div class="relative">
-                <div class="absolute -inset-10 bg-indigo-500/10 blur-[100px] rounded-full"></div>
                 <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-2xl relative border border-slate-50">
                     <div class="img-zoom aspect-square">
-                        <img src="IMG_20260504_110921.jpg" alt="Betterhöhung Metall" class="w-full h-full object-cover">
-                    </div>
-                    <div class="absolute top-8 right-8 bg-slate-900 text-white p-4 rounded-2xl shadow-xl flex flex-col items-center">
-                        <i class="fa-solid fa-shield-halved text-xl mb-1"></i>
-                        <span class="text-[9px] font-black uppercase">Ultra Robust</span>
+                        <img src="IMG_20260504_110921.jpg" alt="Betterhöhung" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Specs Section -->
-    <section id="details" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="mb-20">
-                <h2 class="text-3xl font-extrabold uppercase tracking-tighter mb-4 text-slate-900">Technische Details</h2>
-                <div class="h-1.5 w-20 bg-indigo-600 mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="p-10 rounded-[2rem] bg-slate-50 border border-slate-100 product-card">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600 mb-6 mx-auto">
-                        <i class="fa-solid fa-up-long text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">+7cm - +9cm Höhe</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Die perfekte Höhe, damit Roboter wie Roborock, Dreame oder iRobot hindernisfrei unter Ihr Bett passen.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="p-10 rounded-[2rem] bg-slate-50 border border-slate-100 product-card">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600 mb-6 mx-auto">
-                        <i class="fa-solid fa-weight-hanging text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">Hohe Tragkraft</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Hergestellt mit technischem PETG und hoher Fülldichte. Sicher für Boxspringbetten und schwere Möbel.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="p-10 rounded-[2rem] bg-slate-50 border border-slate-100 product-card">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-indigo-600 mb-6 mx-auto">
-                        <i class="fa-solid fa-maximize text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">Universal-Fit</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Optimierte obere Aussparung für Beine bis 6 cm Radius (12 cm Breite). Stabiles, rutschfestes Design.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 text-slate-900">
-                <div class="max-w-xl">
-                    <span class="text-indigo-600 font-bold uppercase text-[10px] tracking-[0.2em] mb-2 block">Echte Ergebnisse</span>
-                    <h2 class="text-4xl font-extrabold tracking-tighter">Installations-Galerie</h2>
-                </div>
-                <p class="text-slate-500 text-sm font-medium max-w-xs">Echte Fotos unserer Produkte im Einsatz bei Kunden in Essen.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-xl border border-slate-200/50">
-                        <div class="img-zoom aspect-[4/3]">
-                            <img src="IMG_20260504_110852.jpg" alt="Installation am Holzbein" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center px-4">
-                        <span class="font-bold text-slate-800 tracking-tight text-lg">Holzbein-Anpassung</span>
-                        <span class="badge bg-slate-100 text-slate-600">Matt-Schwarz</span>
-                    </div>
-                </div>
-                <div class="space-y-6">
-                    <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-xl border border-slate-200/50">
-                        <div class="img-zoom aspect-[4/3]">
-                            <img src="IMG_20260504_110921.jpg" alt="Installation am Metallbein" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center px-4">
-                        <span class="font-bold text-slate-800 tracking-tight text-lg">Metallbein-Anpassung</span>
-                        <span class="badge bg-indigo-100 text-indigo-700">Industrial Design</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section id="order" class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden text-center">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-indigo-600/10 skew-x-12 translate-x-32"></div>
-        <div class="max-w-5xl mx-auto relative z-10">
-            <h2 class="text-4xl lg:text-5xl font-extrabold mb-8 tracking-tighter">Bereit für ein saubereres Zuhause?</h2>
-            <p class="text-slate-400 text-lg mb-12 max-w-2xl mx-auto">
-                Sicherer Versand ausschließlich per <b>DHL oder Hermes</b> deutschlandweit. Keine Abholung vor Ort möglich. Kontaktieren Sie mich für individuelle Wünsche.
+    <!-- Shipping Section (DHL/HERMES ONLY) -->
+    <section id="order" class="py-24 px-6 bg-slate-900 text-white text-center">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-extrabold mb-8 tracking-tighter" data-i18n="cta-title">Bereit für ein saubereres Zuhause?</h2>
+            <p class="text-slate-400 text-lg mb-12 max-w-2xl mx-auto" data-i18n="cta-desc">
+                Sicherer Versand ausschließlich per <b>DHL oder Hermes</b> deutschlandweit. Keine Abholung vor Ort möglich.
             </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="mailto:rafael.weinzierl@gmail.com" class="w-full sm:w-auto bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-colors shadow-2xl">
-                    <i class="fa-solid fa-envelope mr-3 text-indigo-600"></i> Bestellanfrage senden
-                </a>
-                <div class="flex items-center gap-4 px-6 py-4 bg-white/5 backdrop-blur rounded-2xl border border-white/10">
-                    <i class="fa-brands fa-paypal text-2xl text-indigo-400"></i>
-                    <span class="text-xs font-bold uppercase tracking-widest text-slate-300">PayPal Akzeptiert</span>
-                </div>
-            </div>
-
-            <div class="mt-24 pt-12 border-t border-white/10 grid md:grid-cols-3 gap-8 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-left">
+            <a href="mailto:rafael.weinzierl@gmail.com" class="inline-block bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-colors" data-i18n="btn-order">
+                Bestellanfrage senden
+            </a>
+            <div class="mt-20 grid md:grid-cols-3 gap-8 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
                 <div class="flex flex-col gap-2">
-                    <span class="text-slate-300">Unternehmensstandort</span>
+                    <span class="text-slate-300" data-i18n="footer-loc-t">Standort</span>
                     <span>Altendorfer Str. 355<br>45143 Essen</span>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <span class="text-slate-300">Versandart</span>
-                    <span>Exklusiv DHL / Hermes<br>Keine Abholung</span>
+                    <span class="text-slate-300" data-i18n="footer-ship-t">Versandart</span>
+                    <span data-i18n="footer-ship-v">Exklusiv DHL / Hermes<br>Keine Abholung</span>
                 </div>
-                <div class="flex flex-col gap-2">
-                    <span class="text-slate-300">Rechtliches</span>
-                    <span>Kleingewerbe nach § 19 UStG<br>Keine MwSt. Ausweisung</span>
+                <div class="flex flex-col gap-2 text-center md:text-right">
+                    <span class="text-slate-300" data-i18n="footer-legal-t">Rechtliches</span>
+                    <span data-i18n="footer-legal-v">Kleingewerbe nach § 19 UStG</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-8 bg-slate-950 text-center text-[10px] text-slate-600 font-bold uppercase tracking-[0.3em]">
-        &copy; 2026 BedLift 3D Essen - Engineering for your home
-    </footer>
+    <!-- Lógica de Traducción -->
+    <script>
+        const translations = {
+            'de': {
+                'location': 'Essen, Deutschland',
+                'nav-benefits': 'Vorteile', 'nav-gallery': 'Galerie', 'nav-order': 'Bestellen',
+                'btn-request': 'Jetzt Anfragen', 'hero-badge': 'Lokal in Essen (45143)',
+                'hero-title': 'Mehr Platz für Ihren <br><span class="text-indigo-600">Saugroboter.</span>',
+                'hero-desc': 'Unsere hochfesten Erhöhungen ermöglichen es Ihrem Roboter, mühelos unter dem Bett zu reinigen. Konstruiert und gefertigt in Essen für Holz- und Metallbeine.',
+                'price-tag': '4er Set (Zzgl. Versand)', 'feat-1': 'Industrielles PETG-Material', 'feat-2': 'Bis 6cm Bein-Radius',
+                'cta-title': 'Bereit für ein saubereres Zuhause?',
+                'cta-desc': 'Sicherer Versand ausschließlich per <b>DHL oder Hermes</b> deutschlandweit. Keine Abholung vor Ort möglich.',
+                'btn-order': 'Bestellanfrage senden', 'footer-loc-t': 'Standort', 'footer-ship-t': 'Versandart',
+                'footer-ship-v': 'Exklusiv DHL / Hermes<br>Keine Abholung', 'footer-legal-t': 'Rechtliches', 'footer-legal-v': 'Kleingewerbe nach § 19 UStG'
+            },
+            'es': {
+                'location': 'Essen, Alemania',
+                'nav-benefits': 'Ventajas', 'nav-gallery': 'Galería', 'nav-order': 'Pedido',
+                'btn-request': 'Contactar ahora', 'hero-badge': 'Local en Essen (45143)',
+                'hero-title': 'Más espacio para su <br><span class="text-indigo-600">Robot Aspirador.</span>',
+                'hero-desc': 'Nuestras elevaciones de alta resistencia permiten que su robot limpie debajo de la cama sin esfuerzo. Diseñado y fabricado en Essen.',
+                'price-tag': 'Set de 4 (Más envío)', 'feat-1': 'Material PETG Industrial', 'feat-2': 'Hasta 6cm de radio',
+                'cta-title': '¿Listo para un hogar más limpio?',
+                'cta-desc': 'Envío seguro exclusivamente por <b>DHL o Hermes</b> a toda Alemania. No se permite recogida local.',
+                'btn-order': 'Enviar solicitud de pedido', 'footer-loc-t': 'Ubicación', 'footer-ship-t': 'Método de Envío',
+                'footer-ship-v': 'Exclusivo DHL / Hermes<br>Sin recogida local', 'footer-legal-t': 'Legal', 'footer-legal-v': 'Pequeña empresa (§ 19 UStG)'
+            },
+            'en': {
+                'location': 'Essen, Germany',
+                'nav-benefits': 'Benefits', 'nav-gallery': 'Gallery', 'nav-order': 'Order',
+                'btn-request': 'Inquire Now', 'hero-badge': 'Local in Essen (45143)',
+                'hero-title': 'More space for your <br><span class="text-indigo-600">Robot Vacuum.</span>',
+                'hero-desc': 'Our high-strength risers allow your robot to clean under the bed effortlessly. Designed and manufactured in Essen.',
+                'price-tag': 'Set of 4 (Plus shipping)', 'feat-1': 'Industrial PETG Material', 'feat-2': 'Up to 6cm leg radius',
+                'cta-title': 'Ready for a cleaner home?',
+                'cta-desc': 'Secure shipping exclusively via <b>DHL or Hermes</b> nationwide. No local pickup available.',
+                'btn-order': 'Send Order Inquiry', 'footer-loc-t': 'Location', 'footer-ship-t': 'Shipping Method',
+                'footer-ship-v': 'Exclusive DHL / Hermes<br>No pickup available', 'footer-legal-t': 'Legal', 'footer-legal-v': 'Small business (§ 19 UStG)'
+            }
+        };
 
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = translations[lang][key];
+            });
+            document.getElementById('currentLang').innerText = lang.toUpperCase();
+        }
+    </script>
 </body>
 </html>
