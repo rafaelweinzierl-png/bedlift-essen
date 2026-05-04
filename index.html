@@ -1,192 +1,349 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BedLift 3D Essen | Betterhöhung für Saugroboter</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        :root { --primary: #4f46e5; --dark: #0f172a; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-        .hero-gradient { background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent), radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent); }
-        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15); }
-    </style>
-</head>
-<body class="text-slate-900">
+import React, { useState, useEffect } from 'react';
+import { 
+  ShoppingCart, 
+  Globe, 
+  CreditCard, 
+  Mail, 
+  CheckCircle2, 
+  ChevronRight, 
+  Wind, 
+  Truck, 
+  MapPin, 
+  ShieldAlert, 
+  Info,
+  RotateCcw,
+  Scale
+} from 'lucide-react';
 
-    <!-- Navegación corregida según image_3c26e2.png con botón de Inicio -->
-    <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3 hover:opacity-80 transition">
-                <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <i class="fa-solid fa-cube text-xl"></i>
-                </div>
-                <div>
-                    <span class="block text-lg font-extrabold tracking-tighter leading-none uppercase">BedLift <span class="text-indigo-600">3D</span></span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest" data-i18n="location">Essen, Deutschland</span>
-                </div>
-            </a>
-            
-            <div class="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                <!-- Retorno visible en la barra -->
-                <a href="#" class="hover:text-indigo-600 transition" data-i18n="nav-home">Inicio</a>
-                <a href="#gallery" class="hover:text-indigo-600 transition" data-i18n="nav-gallery">Galerie</a>
-                <a href="#order" class="hover:text-indigo-600 transition" data-i18n="nav-order">Bestellen</a>
-            </div>
+const COLORS = [
+  { name: 'Negro Mate', hex: '#1a1a1a' },
+  { name: 'Blanco Nieve', hex: '#f8f9fa' },
+  { name: 'Gris Industrial', hex: '#6c757d' }
+];
 
-            <div class="flex items-center gap-4">
-                <div class="relative group">
-                    <button class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition">
-                        <i class="fa-solid fa-globe"></i> <span id="currentLang">DE</span>
-                    </button>
-                    <div class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 group-hover:opacity-100 transition-all invisible group-hover:visible z-50">
-                        <button onclick="changeLanguage('de')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-t-xl">DEUTSCH</button>
-                        <button onclick="changeLanguage('es')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50">ESPAÑOL</button>
-                        <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-[10px] font-bold text-slate-600 hover:bg-slate-50 rounded-b-xl">ENGLISH</button>
-                    </div>
-                </div>
-                <a href="mailto:rafael.weinzierl@gmail.com" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-indigo-700 transition-all" data-i18n="btn-request">Jetzt Anfragen</a>
-            </div>
+export default function App() {
+  const [lang, setLang] = useState('es');
+  const [showLegalModal, setShowLegalModal] = useState(null); // 'impressum', 'returns', 'privacy'
+
+  // Precio actualizado a 40 euros (envío no incluido)
+  const price = 40.00;
+
+  // Cierra el modal con la tecla Escape
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setShowLegalModal(null);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
+  const Modal = ({ title, children, onClose }) => (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+      <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl">
+        <div className="sticky top-0 bg-white border-b border-slate-100 p-6 flex justify-between items-center">
+          <h3 className="font-black uppercase tracking-tight text-xl">{title}</h3>
+          <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
+            <span className="sr-only">Cerrar</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
         </div>
-    </nav>
-
-    <!-- Hero Section (Portada) -->
-    <header id="home" class="relative pt-32 pb-20 px-6 hero-gradient overflow-hidden">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="z-10">
-                <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter text-slate-900" data-i18n="hero-title">
-                    Ein sauberes Zuhause, <br><span class="text-indigo-600">ohne Kompromisse.</span>
-                </h1>
-                <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed" data-i18n="hero-desc">
-                    Schluss mit Staubnestern unter dem Bett. Unsere Erhöhungen schaffen den nötigen Platz, damit Ihr Saugroboter oder Reinigungsgeräte mühelos jeden Winkel erreichen. Genießen Sie perfekte Hygiene in Ihrem Schlafzimmer.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 mb-10">
-                    <a href="#order" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold text-sm hover:bg-indigo-700 transition shadow-lg shadow-indigo-200" data-i18n="btn-order-hero">Jetzt Bestellen</a>
-                </div>
-
-                <div class="flex flex-wrap gap-8 items-center p-6 bg-white rounded-3xl shadow-sm border border-slate-100">
-                    <div class="flex flex-col">
-                        <span class="text-4xl font-black text-slate-900">40,00 €</span>
-                        <span class="text-[10px] font-bold text-slate-400 uppercase" data-i18n="price-tag">4er Set (Zzgl. Versand)</span>
-                    </div>
-                    <ul class="text-xs space-y-1 font-bold text-slate-500 uppercase tracking-tight">
-                        <li><i class="fa-solid fa-broom text-indigo-500 mr-2"></i> <span data-i18n="feat-1">100% Erreichbarkeit für Roboter</span></li>
-                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <span data-i18n="feat-2">7 cm effektive Erhöhung</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="product-card bg-white p-3 rounded-[2.5rem] shadow-2xl border border-slate-50">
-                <div class="aspect-square overflow-hidden rounded-[1.5rem]">
-                    <img src="IMG_20260504_110921.jpg" alt="BedLift Hero" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                </div>
-            </div>
+        <div className="p-8 text-slate-600 leading-relaxed text-sm">
+          {children}
         </div>
-    </header>
+      </div>
+    </div>
+  );
 
-    <!-- Galerie Section -->
-    <section id="gallery" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-4xl font-extrabold tracking-tighter mb-4" data-i18n="nav-gallery">Galerie & Details</h2>
-            <div class="h-1.5 w-20 bg-indigo-600 mx-auto rounded-full"></div>
-        </div>
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="flex flex-col gap-4">
-                <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-slate-100 aspect-square">
-                    <img src="IMG_20260504_110852.jpg" alt="BedLift Detail 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                </div>
-                <p class="text-sm text-slate-500 font-medium px-4 leading-relaxed" data-i18n="gallery-desc-1">
-                    Maße von 85x85x90 mm aus robustem PLA. Speziell entwickelt für Holzbeine und runde Metallpfosten mit einem **Radius von bis zu 6 cm**.
-                </p>
-            </div>
-            <div class="flex flex-col gap-4">
-                <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-slate-100 aspect-square">
-                    <img src="IMG_20260504_110921.jpg" alt="BedLift Detail 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                </div>
-                <p class="text-sm text-slate-500 font-medium px-4 leading-relaxed" data-i18n="gallery-desc-2">
-                    Die Erhöhung um 7 cm garantiert den freien Zugang für alle gängigen Saugroboter und erleichtert die manuelle Reinigung unter dem Bett.
-                </p>
-            </div>
-        </div>
-    </section>
+  return (
+    <div className="min-h-screen font-sans text-slate-900 overflow-x-hidden bg-slate-50">
+      {/* FONDO DE NUBES GENERAL */}
+      <div className="fixed inset-0 -z-10 opacity-20 grayscale pointer-events-none">
+        <img 
+          src="https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?auto=format&fit=crop&q=80&w=2000" 
+          className="w-full h-full object-cover"
+          alt="Fondo de nubes suaves"
+        />
+      </div>
 
-    <!-- Footer -->
-    <section id="order" class="py-24 px-6 bg-slate-900 text-white text-center">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-extrabold mb-8 tracking-tighter" data-i18n="cta-title">Sichern Sie sich Ihr Set</h2>
-            <p class="text-slate-300 text-lg mb-12 max-w-2xl mx-auto" data-i18n="cta-desc">
-                Der Versand erfolgt deutschlandweit exklusiv über DHL oder Hermes.
+      {/* HEADER */}
+      <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="bg-slate-900 p-2 rounded-lg text-white font-black text-xl leading-none">3D</div>
+            <span className="font-black text-xl tracking-tighter uppercase">BedLift <span className="text-indigo-600">Essen</span></span>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            <div className="hidden sm:flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              <Globe size={12} />
+              <select 
+                value={lang} 
+                onChange={(e) => setLang(e.target.value)}
+                className="bg-transparent outline-none cursor-pointer focus:ring-0"
+              >
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+              </select>
+            </div>
+            <button className="relative p-2 hover:bg-white/50 rounded-full transition-colors group">
+              <ShoppingCart size={22} className="group-hover:text-indigo-600 transition-colors" />
+              <span className="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">1</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <section className="relative pt-12 pb-24 px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div className="z-10">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur shadow-sm text-slate-700 px-4 py-1.5 rounded-full text-xs font-bold mb-6 border border-slate-100">
+              <CheckCircle2 size={14} className="text-green-500" /> CALIDAD DE INGENIERÍA EN ESSEN
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-8 tracking-tight">
+              Eleva tu cama <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-8">7 centímetros.</span>
+            </h1>
+            <p className="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
+              Compatible con patas de hasta <b>6 cm de radio</b>. El suple ideal para que tu <b>robot de limpieza</b> trabaje con total libertad.
             </p>
-            <div class="flex justify-center">
-                <a href="mailto:rafael.weinzierl@gmail.com" class="bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-50 transition-colors shadow-xl">
-                    <i class="fa-solid fa-envelope mr-3 text-indigo-600"></i> <span data-i18n="btn-order">Anfrage per E-Mail</span>
-                </a>
+            
+            <div className="flex flex-wrap gap-4 items-center">
+              <button className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3 text-center">
+                Comprar Pack de 4 <ChevronRight size={20} />
+              </button>
+              <div className="flex items-center gap-3 text-slate-500">
+                <span className="text-3xl font-black text-slate-900">{price}€</span>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black leading-none uppercase text-orange-600 italic">Envío no incluido</span>
+                  <span className="text-[10px] font-medium leading-none uppercase tracking-tighter text-slate-400">Desde Essen, DE</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* IMAGEN Y DETALLES */}
+          <div className="relative">
+            <div className="absolute -inset-10 bg-indigo-50/50 rounded-full blur-3xl opacity-60" />
+            <div className="relative bg-white p-2 rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden">
+               <div className="absolute top-8 right-8 z-20 bg-indigo-600 text-white p-4 rounded-2xl shadow-lg flex flex-col items-center animate-pulse">
+                  <Wind size={24} />
+                  <span className="text-[10px] font-black mt-1 uppercase tracking-tighter text-center">Apto Robot <br/> Aspirador</span>
+               </div>
+               
+               <div className="relative group">
+                 <img 
+                  src="https://images.unsplash.com/photo-1505693419148-5da3301023b9?auto=format&fit=crop&q=80&w=800" 
+                  className="w-full aspect-square object-cover rounded-[2.5rem] transition-transform duration-700 group-hover:scale-105" 
+                  alt="Cama con elevador impreso en 3D"
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent rounded-[2.5rem]" />
+                 <div className="absolute bottom-8 left-8 text-white">
+                    <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Compatibilidad máxima</p>
+                    <p className="text-2xl font-black tracking-tight">Radio de pata hasta 6 cm</p>
+                 </div>
+               </div>
+
+               <div className="p-8 bg-white">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="flex flex-col">
+                      <p className="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest leading-none">Elevación</p>
+                      <div className="flex items-baseline gap-1">
+                        <p className="text-3xl font-black text-indigo-600">7</p>
+                        <p className="text-xs font-bold text-slate-500 uppercase">cm</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col border-l pl-4 border-slate-100">
+                      <p className="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest leading-none">Radio Máx.</p>
+                      <div className="flex items-baseline gap-1">
+                        <p className="text-3xl font-black text-slate-900">6</p>
+                        <p className="text-xs font-bold text-slate-500 uppercase">cm</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col border-l pl-4 border-slate-100">
+                      <p className="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest leading-none">Base</p>
+                      <p className="text-sm font-black text-slate-900 mt-2">8.5x8.5 cm</p>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <script>
-        const translations = {
-            'de': {
-                'location': 'Essen, Deutschland',
-                'nav-home': 'Startseite', 'nav-gallery': 'Galerie', 'nav-order': 'Bestellen',
-                'btn-request': 'Jetzt Anfragen',
-                'hero-title': 'Ein sauberes Zuhause, <br><span class="text-indigo-600">ohne Kompromisse.</span>',
-                'hero-desc': 'Schluss mit Staubnestern unter dem Bett. Unsere Erhöhungen schaffen den nötigen Platz, damit Ihr Saugroboter mühelos jeden Winkel erreichen.',
-                'btn-order-hero': 'Jetzt Bestellen',
-                'price-tag': '4er Set (Zzgl. Versand)', 
-                'feat-1': '100% Erreichbarkeit für Roboter', 'feat-2': '7 cm effektive Erhöhung',
-                'gallery-desc-1': 'Maße von 85x85x90 mm aus robustem PLA. Speziell entwickelt für Holzbeine und runde Metallpfosten mit einem Radius von bis zu 6 cm.',
-                'gallery-desc-2': 'Die Erhöhung um 7 cm garantiert den freien Zugang für alle gängigen Saugroboter.',
-                'cta-title': 'Sichern Sie sich Ihr Set',
-                'cta-desc': 'Der Versand erfolgt deutschlandweit exklusiv über DHL oder Hermes. Una recogida local no es posible.',
-                'btn-order': 'Anfrage per E-Mail'
-            },
-            'es': {
-                'location': 'Essen, Alemania',
-                'nav-home': 'Inicio', 'nav-gallery': 'Galería', 'nav-order': 'Pedido',
-                'btn-request': 'Contactar ahora',
-                'hero-title': 'Un hogar limpio, <br><span class="text-indigo-600">sin compromisos.</span>',
-                'hero-desc': 'Se acabaron los nidos de polvo bajo la cama. Nuestras elevaciones crean el espacio necesario para que su robot aspirador o utensilios de limpieza lleguen a cada rincón.',
-                'btn-order-hero': 'Pedir ahora',
-                'price-tag': 'Set de 4 (Más envío)', 
-                'feat-1': 'Acceso total para robots', 'feat-2': '7 cm de elevación efectiva',
-                'gallery-desc-1': 'Dimensiones de 85x85x90 mm en PLA robusto. Diseñado para patas de madera y metal circular (radio hasta 6 cm). Colores: gris, blanco, negro, azul.',
-                'gallery-desc-2': 'La elevación de 7 cm garantiza el libre acceso para todos los modelos de robots aspiradores.',
-                'cta-title': 'Consiga su Set ahora',
-                'cta-desc': 'Envío seguro por DHL o Hermes en toda Alemania. No disponible para recogida local.',
-                'btn-order': 'Enviar solicitud por E-mail'
-            },
-            'en': {
-                'location': 'Essen, Germany',
-                'nav-home': 'Home', 'nav-gallery': 'Gallery', 'nav-order': 'Order',
-                'btn-request': 'Inquire Now',
-                'hero-title': 'A clean home, <br><span class="text-indigo-600">without compromises.</span>',
-                'hero-desc': 'No more dust nests under the bed. Our risers create the necessary space so that your robot vacuum can reach every corner.',
-                'btn-order-hero': 'Order Now',
-                'price-tag': 'Set of 4 (Plus shipping)', 
-                'feat-1': '100% accessibility for robots', 'feat-2': '7 cm effective elevation',
-                'gallery-desc-1': 'Dimensions of 85x85x90 mm made of robust PLA. For wooden legs and circular metal posts (radius up to 6 cm).',
-                'gallery-desc-2': 'The 7 cm elevation guarantees free access for all common robot vacuum models.',
-                'cta-title': 'Get your set today',
-                'cta-desc': 'Exclusively shipping across Germany via DHL or Hermes.',
-                'btn-order': 'Send Inquiry via Email'
-            }
-        };
+      {/* BENEFICIOS */}
+      <section className="py-24 bg-slate-900 text-white overflow-hidden relative rounded-t-[4rem]">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="w-24 h-1 bg-indigo-500 mb-8 rounded-full" />
+              <h2 className="text-4xl lg:text-5xl font-black mb-8 uppercase tracking-tighter leading-none">
+                Higiene sin obstáculos
+              </h2>
+              <p className="text-slate-400 text-xl leading-relaxed mb-8">
+                Al elevar tu cama **7 centímetros**, tu robot aspirador puede limpiar cada rincón. No más acumulación de polvo debajo de la cama.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="border border-white/10 p-6 rounded-2xl bg-white/5">
+                  <ShieldAlert className="text-indigo-400 mb-3" size={24} />
+                  <p className="text-sm font-bold italic mb-1 uppercase tracking-tight text-white">Soporte Robusto</p>
+                  <p className="text-[10px] text-slate-500 uppercase font-black leading-tight">Diseño de alta densidad estructural</p>
+                </div>
+                <div className="border border-white/10 p-6 rounded-2xl bg-white/5">
+                  <Truck className="text-indigo-400 mb-3" size={24} />
+                  <p className="text-sm font-bold mb-1 uppercase tracking-tight text-white">Logística Local</p>
+                  <p className="text-[10px] text-slate-500 uppercase font-black leading-tight">Envíos rápidos desde Essen</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-indigo-600/20 absolute -inset-4 blur-3xl rounded-full" />
+              <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[3rem] border border-white/10 shadow-inner">
+                <h3 className="text-2xl font-black mb-6 italic tracking-tight flex items-center gap-2">
+                  <Info className="text-indigo-400" /> Compromiso de Calidad
+                </h3>
+                <ul className="space-y-6">
+                  <li className="flex gap-4 items-start">
+                    <CheckCircle2 className="text-indigo-400 shrink-0 mt-1" size={20} />
+                    <div>
+                      <p className="font-bold tracking-tight text-lg text-white">Pequeño Negocio Local</p>
+                      <p className="text-sm text-slate-400">Operamos bajo el régimen de § 19 UStG. Facturación simplificada sin IVA.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <CheckCircle2 className="text-indigo-400 shrink-0 mt-1" size={20} />
+                    <div>
+                      <p className="font-bold tracking-tight text-lg text-white">Material Técnico Resistente</p>
+                      <p className="text-sm text-slate-400">Fabricado en polímero técnico capaz de soportar la carga dinámica de una cama de matrimonio.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-            document.getElementById('currentLang').innerText = lang.toUpperCase();
-        }
-    </script>
-</body>
-</html>
+      {/* FOOTER & IMPRESSUM (LEGAL) */}
+      <footer className="py-20 px-6 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-16 mb-16">
+            {/* Columna 1: Brand */}
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <div className="bg-slate-900 p-2 rounded text-white font-bold text-sm">3D</div>
+                <span className="font-black text-xl tracking-tighter uppercase">BedLift Essen</span>
+              </div>
+              <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                Innovación y fabricación aditiva personalizada. Solucionamos problemas de altura para robots domésticos desde Essen.
+              </p>
+              <div className="flex items-center gap-3 text-indigo-600 font-bold text-sm bg-indigo-50 p-3 rounded-xl w-fit">
+                 <MapPin size={18} /> 45143 Essen, Alemania
+              </div>
+            </div>
+
+            {/* Columna 2: Legal Info */}
+            <div>
+              <h4 className="font-black uppercase text-[10px] tracking-widest mb-6 text-slate-400 italic">Impressum / Legal</h4>
+              <div className="text-sm text-slate-600 space-y-2">
+                <p className="font-black text-slate-900">Rafael Weinzierl</p>
+                <p>Altendorfer Str. 355</p>
+                <p>45143 Essen, DE</p>
+                <div className="pt-4 flex items-center gap-2 text-indigo-600 font-bold">
+                  <Mail size={16} /> rafael.weinzierl@gmail.com
+                </div>
+                <div className="pt-2 flex flex-col gap-2">
+                  <button 
+                    onClick={() => setShowLegalModal('impressum')}
+                    className="flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors text-xs font-bold"
+                  >
+                    <Scale size={14} /> IMPRESSUM COMPLETO
+                  </button>
+                  <button 
+                    onClick={() => setShowLegalModal('returns')}
+                    className="flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors text-xs font-bold"
+                  >
+                    <RotateCcw size={14} /> POLÍTICA DE DEVOLUCIONES
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Columna 3: Order Info */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between">
+              <div>
+                <h4 className="font-black uppercase text-[10px] tracking-widest mb-4 text-slate-400">Pago & Facturación</h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <CreditCard size={24} className="text-indigo-600" />
+                  <span className="font-black text-2xl tracking-tight text-slate-900">40.00€</span>
+                </div>
+                <div className="bg-orange-100 text-orange-700 text-[10px] font-black px-2 py-1 rounded w-fit uppercase mb-4">
+                  Envío no incluido
+                </div>
+              </div>
+              <div className="pt-4 border-t border-slate-200">
+                <p className="text-[10px] text-slate-500 italic leading-relaxed">
+                  * Gem. § 19 UStG wird keine Umsatzsteuer ausgewiesen (Régimen de pequeño negocio).
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between gap-4 items-center">
+            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">© 2024 BedLift Essen. Handcrafted in Germany.</p>
+            <div className="flex gap-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
+               <button onClick={() => setShowLegalModal('privacy')} className="hover:text-indigo-600 transition-colors">Datenschutz</button>
+               <span className="text-slate-200">|</span>
+               <button className="hover:text-indigo-600 transition-colors">AGB</button>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* MODALES LEGALES */}
+      {showLegalModal === 'impressum' && (
+        <Modal title="Impressum" onClose={() => setShowLegalModal(null)}>
+          <div className="space-y-4">
+            <p className="font-bold text-slate-900 text-lg underline decoration-indigo-200 underline-offset-4">Angaben gemäß § 5 TMG</p>
+            <p>Rafael Weinzierl<br />Altendorfer Str. 355<br />45143 Essen</p>
+            <p className="font-bold text-slate-900 mt-6">Kontakt</p>
+            <p>E-Mail: rafael.weinzierl@gmail.com</p>
+            <p className="font-bold text-slate-900 mt-6">Umsatzsteuer-ID</p>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+            No aplica (Kleinunternehmerregelung gemäß § 19 UStG).</p>
+            <p className="font-bold text-slate-900 mt-6">Streitschlichtung</p>
+            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+            https://ec.europa.eu/consumers/odr. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+          </div>
+        </Modal>
+      )}
+
+      {showLegalModal === 'returns' && (
+        <Modal title="Widerrufsbelehrung (Devoluciones)" onClose={() => setShowLegalModal(null)}>
+          <div className="space-y-4">
+            <h4 className="font-black text-slate-900 uppercase text-xs tracking-widest italic">Derecho de Desistimiento</h4>
+            <p>Usted tiene derecho a desistir de este contrato en un plazo de **14 días** naturales sin necesidad de justificación.</p>
+            <p>El plazo de desistimiento expirará a los 14 días del día que usted o un tercero por usted indicado, distinto del transportista, adquirió la posesión material de los bienes.</p>
+            
+            <h4 className="font-black text-slate-900 uppercase text-xs tracking-widest italic mt-6 italic">Consecuencias del desistimiento</h4>
+            <p>En caso de desistimiento, le devolveremos todos los pagos recibidos de usted, **excluyendo los gastos de envío** originales, sin ninguna demora indebida.</p>
+            <p>Deberá usted devolvernos o entregarnos directamente los bienes a la dirección indicada en el Impressum. Los gastos de devolución corren a cargo del comprador.</p>
+            
+            <div className="bg-amber-50 p-4 rounded-xl border border-amber-100 text-xs text-amber-800">
+              <strong>Nota Importante:</strong> El producto debe devolverse en perfectas condiciones, sin signos de uso que excedan la mera comprobación del producto.
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {showLegalModal === 'privacy' && (
+        <Modal title="Datenschutzerklärung" onClose={() => setShowLegalModal(null)}>
+          <div className="space-y-4">
+            <p>Tratamos sus datos de forma confidencial de acuerdo con el Reglamento General de Protección de Datos (RGPD).</p>
+            <p>Los datos proporcionados vía email o contacto directo se utilizarán exclusivamente para la gestión del pedido y el envío del producto.</p>
+            <p>No cedemos sus datos a terceros, salvo para el proceso de envío postal necesario.</p>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
