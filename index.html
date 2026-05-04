@@ -18,7 +18,7 @@
 </head>
 <body class="text-slate-900">
 
-    <!-- Navegación: El logo ahora retorna a la parte superior -->
+    <!-- Navegación corregida según image_3c26e2.png con botón de Inicio -->
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 hover:opacity-80 transition">
@@ -32,6 +32,8 @@
             </a>
             
             <div class="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                <!-- Retorno visible en la barra -->
+                <a href="#" class="hover:text-indigo-600 transition" data-i18n="nav-home">Inicio</a>
                 <a href="#gallery" class="hover:text-indigo-600 transition" data-i18n="nav-gallery">Galerie</a>
                 <a href="#order" class="hover:text-indigo-600 transition" data-i18n="nav-order">Bestellen</a>
             </div>
@@ -112,7 +114,7 @@
         </div>
     </section>
 
-    <!-- Footer / Pedido -->
+    <!-- Footer -->
     <section id="order" class="py-24 px-6 bg-slate-900 text-white text-center">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-4xl font-extrabold mb-8 tracking-tighter" data-i18n="cta-title">Sichern Sie sich Ihr Set</h2>
@@ -131,47 +133,47 @@
         const translations = {
             'de': {
                 'location': 'Essen, Deutschland',
-                'nav-gallery': 'Galerie', 'nav-order': 'Bestellen',
+                'nav-home': 'Startseite', 'nav-gallery': 'Galerie', 'nav-order': 'Bestellen',
                 'btn-request': 'Jetzt Anfragen',
                 'hero-title': 'Ein sauberes Zuhause, <br><span class="text-indigo-600">ohne Kompromisse.</span>',
-                'hero-desc': 'Schluss mit Staubnestern unter dem Bett. Unsere Erhöhungen schaffen den nötigen Platz, damit Ihr Saugroboter oder Reinigungsgeräte mühelos jeden Winkel erreichen. Genießen Sie perfekte Hygiene in Ihrem Schlafzimmer.',
+                'hero-desc': 'Schluss mit Staubnestern unter dem Bett. Unsere Erhöhungen schaffen den nötigen Platz, damit Ihr Saugroboter mühelos jeden Winkel erreichen.',
                 'btn-order-hero': 'Jetzt Bestellen',
                 'price-tag': '4er Set (Zzgl. Versand)', 
                 'feat-1': '100% Erreichbarkeit für Roboter', 'feat-2': '7 cm effektive Erhöhung',
                 'gallery-desc-1': 'Maße von 85x85x90 mm aus robustem PLA. Speziell entwickelt für Holzbeine und runde Metallpfosten mit einem Radius von bis zu 6 cm.',
-                'gallery-desc-2': 'Die Erhöhung um 7 cm garantiert den freien Zugang für alle gängigen Saugroboter und erleichtert die manuelle Reinigung unter dem Bett.',
+                'gallery-desc-2': 'Die Erhöhung um 7 cm garantiert den freien Zugang für alle gängigen Saugroboter.',
                 'cta-title': 'Sichern Sie sich Ihr Set',
-                'cta-desc': 'Der Versand erfolgt deutschlandweit exklusiv über DHL oder Hermes. Eine Abholung vor Ort es leider nicht möglich.',
+                'cta-desc': 'Der Versand erfolgt deutschlandweit exklusiv über DHL oder Hermes. Una recogida local no es posible.',
                 'btn-order': 'Anfrage per E-Mail'
             },
             'es': {
                 'location': 'Essen, Alemania',
-                'nav-gallery': 'Galería', 'nav-order': 'Pedido',
+                'nav-home': 'Inicio', 'nav-gallery': 'Galería', 'nav-order': 'Pedido',
                 'btn-request': 'Contactar ahora',
                 'hero-title': 'Un hogar limpio, <br><span class="text-indigo-600">sin compromisos.</span>',
-                'hero-desc': 'Se acabaron los nidos de polvo bajo la cama. Nuestras elevaciones crean el espacio necesario para que su robot aspirador o utensilios de limpieza lleguen a cada rincón sin esfuerzo. Disfrute de una higiene perfecta.',
+                'hero-desc': 'Se acabaron los nidos de polvo bajo la cama. Nuestras elevaciones crean el espacio necesario para que su robot aspirador o utensilios de limpieza lleguen a cada rincón.',
                 'btn-order-hero': 'Pedir ahora',
-                'price-tag': 'Set de 4 (Más envío, por pagar)', 
+                'price-tag': 'Set de 4 (Más envío)', 
                 'feat-1': 'Acceso total para robots', 'feat-2': '7 cm de elevación efectiva',
-                'gallery-desc-1': 'Dimensiones de 85x85x90 mm en PLA robusto. Especialmente diseñado para patas de madera y metal circular con un radio de hasta 6 cm., colores grises, blanco, negro, azul',
-                'gallery-desc-2': 'La elevación de 7 cm garantiza el libre acceso para todos los modelos comunes de robots aspiradores y facilita la limpieza manual.',
+                'gallery-desc-1': 'Dimensiones de 85x85x90 mm en PLA robusto. Diseñado para patas de madera y metal circular (radio hasta 6 cm). Colores: gris, blanco, negro, azul.',
+                'gallery-desc-2': 'La elevación de 7 cm garantiza el libre acceso para todos los modelos de robots aspiradores.',
                 'cta-title': 'Consiga su Set ahora',
                 'cta-desc': 'Envío seguro por DHL o Hermes en toda Alemania. No disponible para recogida local.',
                 'btn-order': 'Enviar solicitud por E-mail'
             },
             'en': {
                 'location': 'Essen, Germany',
-                'nav-gallery': 'Gallery', 'nav-order': 'Order',
+                'nav-home': 'Home', 'nav-gallery': 'Gallery', 'nav-order': 'Order',
                 'btn-request': 'Inquire Now',
                 'hero-title': 'A clean home, <br><span class="text-indigo-600">without compromises.</span>',
-                'hero-desc': 'No more dust nests under the bed. Our risers create the necessary space so that your robot vacuum or cleaning tools can reach every corner effortlessly. Enjoy perfect hygiene in your bedroom.',
+                'hero-desc': 'No more dust nests under the bed. Our risers create the necessary space so that your robot vacuum can reach every corner.',
                 'btn-order-hero': 'Order Now',
                 'price-tag': 'Set of 4 (Plus shipping)', 
                 'feat-1': '100% accessibility for robots', 'feat-2': '7 cm effective elevation',
-                'gallery-desc-1': 'Dimensions of 85x85x90 mm made of robust PLA. Specially designed for wooden legs and circular metal posts with a radius of up to 6 cm.',
-                'gallery-desc-2': 'The 7 cm elevation guarantees free access for all common robot vacuum models and facilitates manual cleaning under the bed.',
+                'gallery-desc-1': 'Dimensions of 85x85x90 mm made of robust PLA. For wooden legs and circular metal posts (radius up to 6 cm).',
+                'gallery-desc-2': 'The 7 cm elevation guarantees free access for all common robot vacuum models.',
                 'cta-title': 'Get your set today',
-                'cta-desc': 'Exclusively shipping across Germany via DHL or Hermes. Local pickup not available.',
+                'cta-desc': 'Exclusively shipping across Germany via DHL or Hermes.',
                 'btn-order': 'Send Inquiry via Email'
             }
         };
